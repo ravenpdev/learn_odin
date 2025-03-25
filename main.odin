@@ -804,10 +804,29 @@ main :: proc() {
 	// u32_age: u32 = u32(float_age)
 	// fmt.println(age, float_age, u32_age)
 
-	// or with type inference
-	age := 32
+	age := 32 // or with type inference
 	f_age := f64(age)
 	u_age := u32(f_age)
 	fmt.println(age, f_age, u_age)
 	// Unline C, assignments between values of a different type require an explicit conversion.
+
+	// Cast operator #
+	// The cast operator can also be used to do the same thing:
+	// This is useful in some contexts but has the same semantic meaning.
+	{
+		i := 123
+		f := cast(f64)i
+		u := cast(u32)i
+	}
+
+
+	// Transmute operator #
+	// The transmute operator is a bit cast conversion between two types of the same size:
+	{
+		f := f32(123)
+		u := transmute(u32)f
+		fmt.println("f32", f)
+		fmt.println("u32", u)
+		fmt.printf("u32: 0x%x\n", u)
+	}
 }
